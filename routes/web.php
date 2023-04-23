@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Roles
+Route::get('/roles',[RoleController::class,'index'])->name('roles');
+Route::match(['GET','POST'],'/add-role',[RoleController::class,'add'])->name('role.add');
+Route::match(['GET','POST'],'/edit-role{role_id}',[RoleController::class,'edit'])->name('role.edit');
+Route::match(['GET','POST'],'role-delete{role_id}',[RoleController::class,'delete'])->name('role.delete');
