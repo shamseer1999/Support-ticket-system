@@ -26,6 +26,11 @@
                         <li><a href="{{route('roles')}}" class="text-decoration-none"> Roles List </a></li>
                         <li><a href="{{route('role.add')}}" class="text-decoration-none"> Add Role </a></li>
                     </ul>
+                    <li>Users</li>
+                    <ul>
+                        <li><a href="{{route('users')}}" class="text-decoration-none"> Users List</a></li>
+                        <li><a href="{{route('user.add')}}" class="text-decoration-none">Add User</a></li>
+                    </ul>
                 </ul>
             </div>
             <div class="col-md-9">
