@@ -11,6 +11,7 @@
 
     <!--Icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 
     <style>
         ul {
@@ -31,17 +32,28 @@
         <div class="row">
             <div class="col-md-3 ">
                 <ul class="bg-light">
-                    <li class="border border-primary"><a href="{{route('home')}}" class="text-decoration-none">Dashbord</a></li>
-                    <li>Roles</li>
-                    <ul>
-                        <li class="border border-primary"><a href="{{route('roles')}}" class="text-decoration-none"> Roles List </a></li>
-                        <li class="border border-primary"><a href="{{route('role.add')}}" class="text-decoration-none"> Add Role </a></li>
-                    </ul>
-                    <li>Users</li>
-                    <ul>
-                        <li class="border border-primary"><a href="{{route('users')}}" class="text-decoration-none"> Users List</a></li>
-                        <li class="border border-primary"><a href="{{route('user.add')}}" class="text-decoration-none">Add User</a></li>
-                    </ul>
+                    
+                        <li class="border border-primary"><a href="{{route('home')}}" class="text-decoration-none">Dashbord</a></li>
+                        <li>Roles</li>
+                        <ul>
+                            <li class="border border-primary"><a href="{{route('roles')}}" class="text-decoration-none"> Roles List </a></li>
+                            <li class="border border-primary"><a href="{{route('role.add')}}" class="text-decoration-none"> Add Role </a></li>
+                        </ul>
+                        <li>Users</li>
+                        <ul>
+                            <li class="border border-primary"><a href="{{route('users')}}" class="text-decoration-none"> Users List</a></li>
+                            <li class="border border-primary"><a href="{{route('user.add')}}" class="text-decoration-none">Add User</a></li>
+                        </ul>
+                    
+                    
+                        <li>Tickets</li>
+                        <ul>
+                            <li class="border border-primary"><a href="">Tickets List</a></li>
+                            <li class="border border-primary"><a href="{{route('ticket.add')}}"  class="text-decoration-none">Add Ticket</a></li>
+                        
+                        </ul>
+                        
+                    
                     <li class="mt-5"><a href="{{route('logout')}}" class="text-decoration-none"><i class="fa fa-power-off"></i> Logout</a></li>
                 </ul>
             </div>
