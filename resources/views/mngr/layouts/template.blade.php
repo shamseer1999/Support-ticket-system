@@ -53,6 +53,14 @@
                 </div>
                     
                 @endif
+                @if (session()->has('danger'))
+                <div class="alert alert-danger mt-1">
+                    <div class="card-body">
+                        {{ session('danger')}}
+                    </div>
+                </div>
+                    
+                @endif
                 @yield('content')
             </div>
         </div>

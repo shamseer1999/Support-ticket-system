@@ -25,4 +25,9 @@ class Ticket extends Model
     {
         return $this->belongsToMany(Label::class,'ticket_labels');
     }
+
+    public function agents()
+    {
+        return $this->belongsToMany(User::class,'assigned_agents','ticket_id','agent_id');
+    }
 }

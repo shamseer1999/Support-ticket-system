@@ -55,8 +55,13 @@
                                     {{$item->users->name}}
                                 </td>
                                 <td class="p-1">
-                                    <a href="{{route('role.edit',encrypt($item->id))}}" ><i class="fa fa-pencil"></i></a>
-                                    <a href="{{route('role.delete',encrypt($item->id))}}" onclick="return confirm('Are you sure you want to delete ?')"><i class="fa fa-remove"></i></a>
+                                    @if (auth()->user()->role ==3)
+                                    <a href="{{route('ticket.assign',encrypt($item->id))}}" class="btn btn-primary btn-sm">Assign To Agent</a>
+                                    {{-- <a href="{{route('role.edit',encrypt($item->id))}}" ><i class="fa fa-pencil"></i></a> --}}
+                                    <a href="{{route('ticket.view',encrypt($item->id))}}" ><i class="fa fa-eye"></i></a>
+                                    {{-- <a href="{{route('role.delete',encrypt($item->id))}}" onclick="return confirm('Are you sure you want to delete ?')"><i class="fa fa-remove"></i></a> --}}
+                                    @endif
+                                   
                                 </td>
                             </tr>
                         @endforeach

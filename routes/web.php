@@ -37,6 +37,9 @@ Route::middleware('userLogged')->group(function(){
             Route::get('/users',[UserController::class,'index'])->name('users');
             Route::match(['GET','POST'],'/add',[UserController::class,'add'])->name('user.add');
             Route::match(['GET','POST'],'/edit{user_id}',[UserController::class,'edit'])->name('user.edit');
+
+            //tickets
+            Route::match(['GET','POST'],'/assign{id}',[TicketController::class,'assignto_agent'])->name('ticket.assign');
         });
 
         //only user
@@ -49,6 +52,7 @@ Route::middleware('userLogged')->group(function(){
         //both admin and user
         Route::middleware('adm_user_role')->group(function(){
             Route::get('/tickets',[TicketController::class,'index'])->name('tickets');
+            Route::get('/ticket-view{id}',[TicketController::class,'view'])->name('ticket.view');
         });
     
 

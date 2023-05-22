@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assigned_agent;
 use App\Models\Ticket;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,7 @@ class TicketController extends Controller
         }else{
             $ticket = $query->with(['users','categories','labels'])->where('user_id',$user)->paginate(10);
         }
-// dd($ticket);
+//  dd($ticket);
         $data['results'] = $ticket;
         
         return view('tickets.index',$data);
@@ -89,5 +90,46 @@ class TicketController extends Controller
         $data['categories']=DB::table('categories')->get();
 
         return view('tickets.add',$data);
+    }
+
+    public function assignto_agent(Request $request,$id)
+    {
+        $ticketId=decrypt($id);
+
+        if($request->isMethod('post'))
+        {
+            $ins_arr=array(
+                'ticket_id'=>$ticketId,
+                'agent_id' =>$request->agent,
+                'assigned_by' =>auth()->user()->id
+            );
+
+            $checkTicket=Assigned_agent::where(['ticket_id'=>$ticketId,'agent_id'=>$request->agent])->first();
+
+            if($checkTicket !="")
+            {
+                return redirect()->route('tickets')->with('danger','Ticket already assigned this agent');
+                
+            }
+
+                Assigned_agent::create($ins_arr);   
+                return redirect()->route('tickets')->with('success','Ticket assigned to agent successfully');
+
+        }
+
+        $data['agents'] =User::where('role',2)->get();
+        $data['ticket']=Ticket::find($ticketId);
+        return view('mngr.tickets.assign_to_agents',$data);
+    }
+
+    public function view($id)
+    {
+        $ticketId=decrypt($id);
+
+        $viewdata=Ticket::with(['agents','labels','categories'])->find($ticketId);
+
+        $data['viewdata'] =$viewdata;
+
+        return view('tickets.view_tickets',$data);
     }
 }
